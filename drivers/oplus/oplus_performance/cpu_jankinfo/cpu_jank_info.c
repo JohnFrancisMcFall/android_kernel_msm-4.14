@@ -23,7 +23,7 @@ static struct proc_dir_entry *d_cpu_jank_info;
 #ifdef CONFIG_IRQ_TIME_ACCOUNTING
 void android_vh_irqtime_account_process_tick_handler(
 			void *unused,
-			struct task_struct *p, struct rq *rq, int user_tick, int ticks)
+			struct task_struct *p, struct rq, int user_tick, int ticks)
 {
 	jankinfo_update_time_info(rq, p, ticks*TICK_NSEC);
 }

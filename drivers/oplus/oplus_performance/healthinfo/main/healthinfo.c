@@ -868,7 +868,7 @@ static ssize_t cpu_info_read(struct file *filp, char __user *buff, size_t count,
 		return -ENOMEM;
 	}
     for_each_possible_cpu(cpu) {
-	scale_capacity = arch_scale_cpu_capacity(cpu);
+	scale_capacity = arch_scale_cpu_capacity(NULL,cpu);
         if (scale_capacity == last_capacity) {
             continue;
         }

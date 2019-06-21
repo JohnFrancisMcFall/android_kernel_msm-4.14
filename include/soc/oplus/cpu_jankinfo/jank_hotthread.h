@@ -14,7 +14,7 @@ struct task_track {
 	pid_t tgid;
 	char comm[TASK_COMM_LEN];
 	char leader_comm[TASK_COMM_LEN];
-	struct task_record record;
+	struct task_record ;
 };
 
 struct task_track_cpu {
