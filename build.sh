@@ -9,6 +9,11 @@ TC_DIR="$(pwd)/tc/clang-r450784e"
 AK3_DIR="$(pwd)/android/AnyKernel3"
 DEFCONFIG="vendor/surya-perf_defconfig"
 
+if test -z "$(git rev-parse --show-cdup 2>/dev/null)" &&
+   head=$(git rev-parse --verify HEAD 2>/dev/null); then
+	ZIPNAME="${ZIPNAME::-4}-$(echo $head | cut -c1-8).zip"
+fi
+
 export PATH="$TC_DIR/bin:$PATH"
 
 if ! [ -d "$TC_DIR" ]; then
