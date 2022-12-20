@@ -44,6 +44,12 @@ obj-$(CONFIG_OPLUS_FEATURE_UIFIRST) += oplus_performance/uifirst/
 #Add for NandSwap
 obj-$(CONFIG_NANDSWAP)		+= oplus_performance/oplus_nandswap/
 
+<<<<<<< HEAD
 #obj-y += oplus_performance/sched_assist/
 #obj-y += oplus_performance/special_opt/
 #obj-y += oplus_performance/uxio_first/
+=======
+#Add for NandSwap
+obj-$(CONFIG_NANDSWAP)		+= oplus_performance/oplus_nandswap/
+
+>>>>>>> b5f9d2b6da6b... Import Oplus Nandswap
