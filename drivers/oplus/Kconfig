@@ -128,9 +128,3 @@ config OPLUS_FEATURE_SHUTDOWN_SPEED
 #Add for NandSwap
 source "drivers/oplus/oplus_performance/oplus_nandswap/Kconfig"
 
-config CONFIG_OPLUS_BINDER_STRATEGY
-	bool "oplus binder strategi"
-	default n
-	help
-	 oplus binder strategi
-
