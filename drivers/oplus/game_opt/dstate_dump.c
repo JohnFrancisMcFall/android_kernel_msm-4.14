@@ -7,7 +7,10 @@
 #include <linux/fs.h>
 #include <linux/proc_fs.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
 #include "../../kernel/sched/sched.h"
+=======
+>>>>>>> af48987acc1c... import OPLUS_FEATURE_GAME_OPT
 
 #include "game_ctrl.h"
 

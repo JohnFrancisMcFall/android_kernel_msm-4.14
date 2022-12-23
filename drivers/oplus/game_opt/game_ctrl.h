@@ -10,6 +10,10 @@
 #include <linux/sched/task.h>
 #include <linux/sched/signal.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
+=======
+#include "../../../../kernel/sched/sched.h"
+>>>>>>> af48987acc1c... import OPLUS_FEATURE_GAME_OPT
 
 #define GAME_CTRL_MAGIC 'x'
 

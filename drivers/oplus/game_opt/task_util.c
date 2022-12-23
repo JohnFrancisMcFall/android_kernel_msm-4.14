@@ -16,7 +16,10 @@
 #include <linux/proc_fs.h>
 #include <linux/cpufreq.h>
 #include <linux/sched/cpufreq.h>
+<<<<<<< HEAD
 #include "../../kernel/sched/sched.h"
+=======
+>>>>>>> af48987acc1c... import OPLUS_FEATURE_GAME_OPT
 
 #include "game_ctrl.h"
 
@@ -336,7 +339,11 @@ static inline u64 scale_exec_time(u64 delta, struct rq *rq)
 		return delta;
 
 	task_exec_scale = DIV64_U64_ROUNDUP(cur_freq *
+<<<<<<< HEAD
 				arch_scale_cpu_capacity(cpu),
+=======
+				arch_scale_cpu_capacity(NULL, cpu),
+>>>>>>> af48987acc1c... import OPLUS_FEATURE_GAME_OPT
 				max_freq);
 
 	return (delta * task_exec_scale) >> 10;
