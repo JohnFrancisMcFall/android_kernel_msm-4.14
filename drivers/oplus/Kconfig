@@ -71,6 +71,13 @@ config COLOR_CTRL_V2
 
 	  If unsure, say N.
 
+#ifdef OPLUS_FEATURE_MIDAS
+source "drivers/oplus/system/oplus_midas/Kconfig"
+#endif
+
+source "drivers/oplus/system/shutdown_detect/Kconfig"
+source "drivers/oplus/oplus_performance/tpp/Kconfig"
+
 config OPLUS_ION_BOOSTPOOL
 	bool "Support ION Boost pool"
 	default n

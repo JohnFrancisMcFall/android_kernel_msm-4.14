@@ -7,6 +7,7 @@ obj-y     += system/cmdline_parser/
 obj-y     += system/acm/
 obj-y     += system/misc/
 obj-y     += system/project_info/
+<<<<<<< HEAD
 obj-y     += system/selinux/
 obj-y     += system/shutdown_detect/
 obj-y     += system/qcom_minidump/
@@ -19,6 +20,17 @@ obj-$(CONFIG_OPLUS_FEATURE_ZRAM_OPT)     += oplus_performance/oplus_mm/zram_opt/
 obj-$(CONFIG_ZWB_HANDLE) += oplus_performance/zwb_handle/
 obj-$(CONFIG_OPLUS_FEATURE_FDLEAK_CHECK) += oplus_fdleak_check.o
 obj-$(CONFIG_COLOR_CTRL_V2) += colorctrl.o
+=======
+#ifdef OPLUS_FEATURE_MDMFEATURE
+obj-$(CONFIG_OPLUS_FEATURE_MDMFEATURE)     += system/mdmfeature/
+#endif /*OPLUS_FEATURE_MDMFEATURE*/
+
+#ifdef VENDOR_EDIT
+obj-$(CONFIG_OPLUS_FEATURE_MIDAS)    += system/oplus_midas/
+#endif /* VENDOR_EDIT */
+
+obj-$(CONFIG_OPLUS_FEATURE_SHUTDOWN_DETECT)    += system/shutdown_detect/
+>>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2
 obj-$(CONFIG_OPLUS_ION_BOOSTPOOL) += oplus_performance/ion_boost_pool/oplus_ion_boost_pool.o
 
 obj-y	+= charger/oplus_chg_symbol.o
