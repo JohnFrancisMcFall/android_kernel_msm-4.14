@@ -28,13 +28,7 @@
 
 #include <net/netfilter/nf_conntrack_tuple.h>
 
-#define SIP_LIST_ELEMENTS	2
-
-struct sip_length {
-	int msg_length[SIP_LIST_ELEMENTS];
-	int skb_len[SIP_LIST_ELEMENTS];
-	int data_len[SIP_LIST_ELEMENTS];
-};
+#define OPLUS_FEATURE_WIFI_LUCKYMONEY
 
 /* per conntrack: protocol private data */
 union nf_conntrack_proto {
@@ -96,6 +90,10 @@ struct nf_conn {
 	/* all members below initialized via memset */
 	struct { } __nfct_init_offset;
 
+	#ifdef OPLUS_FEATURE_WIFI_LUCKYMONEY
+	u32 oplus_app_uid;
+	#endif /* OPLUS_FEATURE_WIFI_LUCKYMONEY */
+
 	/* If we were expected by an expectation, this will be it */
 	struct nf_conn *master;
 
@@ -113,7 +111,7 @@ struct nf_conn {
 	void *sfe_entry;
 	struct list_head sip_segment_list;
 	const char *dptr_prev;
-	struct sip_length segment;
+//	struct sip_length segment;
 	bool sip_original_dir;
 	bool sip_reply_dir;
 
