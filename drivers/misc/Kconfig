@@ -626,6 +626,23 @@ config BATTERY_SAVER
 
 	  If in doubt, say N.
 
+#ifdef OPLUS_FEATURE_SIM_DETECT
+config SIM_DETECT
+	tristate "SIM_DETECT system"
+	default n
+	help
+	  Say Y here to enable sim detect system support
+#endif /* OPLUS_FEATURE_SIM_DETECT */
+
+#ifdef OPLUS_FEATURE_SIM_DETECT
+config OEM_QMI
+	tristate "oem qmi feature"
+	default n
+	help
+	  Say Y here to enable oem qmi support
+#endif /* OPLUS_FEATURE_SIM_DETECT */
+
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
