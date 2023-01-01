@@ -54,3 +54,8 @@ obj-$(CONFIG_OPLUS_FEATURE_UIFIRST) += oplus_performance/uifirst/
 #Add for NandSwap
 obj-$(CONFIG_NANDSWAP)		+= oplus_performance/oplus_nandswap/
 
+
+#ifdef OPLUS_FEATURE_SAUPWK
+#Add for theia saupwrkey
+obj-$(CONFIG_OPLUS_FEATURE_SAUPWK)     += system/oplus_saupwk/
+#endif /* OPLUS_FEATURE_SAUPWK */

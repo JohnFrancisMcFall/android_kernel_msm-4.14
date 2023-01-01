@@ -136,3 +136,18 @@ config OPLUS_FEATURE_SHUTDOWN_SPEED
 #Add for NandSwap
 source "drivers/oplus/oplus_performance/oplus_nandswap/Kconfig"
 
+#ifdef OPLUS_FEATURE_TPD
+source "drivers/oplus/oplus_performance/tpd/Kconfig"
+#endif
+
+#ifdef OPLUS_FEATURE_IM
+#ted.lin@optimization add for im module
+source "drivers/oplus/oplus_performance/im/Kconfig"
+#endif /* OPLUS_FEATURE_IM */
+
+
+#ifdef OPLUS_FEATURE_SAUPWK
+#Add for theia saupwrkey
+source "drivers/oplus/system/oplus_saupwk/Kconfig"
+#endif /* OPLUS_FEATURE_SAUPWK */
+
