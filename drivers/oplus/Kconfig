@@ -161,3 +161,10 @@ config OPLUS_COMMON_SOFT
 
 source "drivers/oplus/device_info/Kconfig"
 #endif /* OPLUS_FEATURE_TP_BASIC */
+
+
+#ifdef OPLUS_FEATURE_LOWMEM_DBG
+#Add for dump memory usage when lowmmem occurs.
+source "drivers/oplus/oplus_performance/lowmem_dbg/Kconfig"
+##endif /* OPLUS_FEATURE_LOWMEM_DBG */
+
