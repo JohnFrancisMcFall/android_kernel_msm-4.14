@@ -59,3 +59,6 @@ obj-$(CONFIG_NANDSWAP)		+= oplus_performance/oplus_nandswap/
 #Add for theia saupwrkey
 obj-$(CONFIG_OPLUS_FEATURE_SAUPWK)     += system/oplus_saupwk/
 #endif /* OPLUS_FEATURE_SAUPWK */
+
+obj-$(CONFIG_OPLUS_COMMON_SOFT)  +=  device_info/
+
