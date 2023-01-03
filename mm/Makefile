@@ -106,3 +106,13 @@ obj-$(CONFIG_HARDENED_USERCOPY) += usercopy.o
 obj-$(CONFIG_PERCPU_STATS) += percpu-stats.o
 obj-$(CONFIG_HMM) += hmm.o
 obj-$(CONFIG_PROCESS_RECLAIM)	+= process_reclaim.o
+
+
+#ifdef OPLUS_FEATURE_HEALTHINFO
+obj-y += healthinfo/
+#endif /* OPLUS_FEATURE_HEALTHINFO */
+
+#if defined(OPLUS_FEATURE_MEMLEAK_DETECT)
+obj-$(CONFIG_DUMP_TASKS_MEM) += task_mem/
+#endif /*defined(OPLUS_FEATURE_MEMLEAK_DETECT)
+
