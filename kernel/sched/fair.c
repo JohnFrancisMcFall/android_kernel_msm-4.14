@@ -40,6 +40,14 @@
 #include "tune.h"
 #include "walt.h"
 
+#if defined(OPLUS_FEATURE_IOMONITOR) && defined(CONFIG_IOMONITOR)
+#include <linux/iomonitor/iomonitor.h>
+#endif /*OPLUS_FEATURE_IOMONITOR*/
+
+#if defined(OPLUS_FEATURE_IOMONITOR) && defined(CONFIG_IOMONITOR)
+				iomonitor_record_iowait(tsk, (delta >> 20));
+#endif /*OPLUS_FEATURE_IOMONITOR*/
+
 #ifdef CONFIG_SMP
 static inline bool get_rtg_status(struct task_struct *p);
 static inline bool task_fits_max(struct task_struct *p, int cpu);

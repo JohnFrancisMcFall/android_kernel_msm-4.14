@@ -140,3 +140,6 @@ source "drivers/oplus/oplus_performance/lowmem_dbg/Kconfig"
 source "drivers/oplus/oplus_performance/memleak_detect/svelte/Kconfig"
 #endif /* OPLUS_FEATURE_MEMLEAK_DETECT */
 
+#ifdef OPLUS_FEATURE_IOMONITOR
+source "drivers/oplus/oplus_performance/iomonitor/Kconfig"
+#endif /*OPLUS_FEATURE_IOMONITOR*/

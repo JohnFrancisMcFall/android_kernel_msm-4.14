@@ -47,8 +47,9 @@
 #include <soc/qcom/scm.h>
 
 #include <acpi/ghes.h>
-#include <soc/qcom/scm.h>
-#include <trace/events/exception.h>
+#if defined(OPLUS_FEATURE_IOMONITOR) && defined(CONFIG_IOMONITOR)
+#include <linux/iomonitor/iomonitor.h>
+#endif /*OPLUS_FEATURE_IOMONITOR*/
 
 struct fault_info {
 	int	(*fn)(unsigned long addr, unsigned int esr,
@@ -326,8 +327,6 @@ static void __do_user_fault(struct task_struct *tsk, unsigned long addr,
 	const struct fault_info *inf;
 	unsigned int lsb = 0;
 
-	trace_user_fault(tsk, addr, esr);
-
 	if (unhandled_signal(tsk, sig) && show_unhandled_signals_ratelimited()) {
 		inf = esr_to_fault_info(esr);
 		pr_info("%s[%d]: unhandled %s (%d) at 0x%08lx, esr 0x%03x",
@@ -547,6 +546,9 @@ done:
 		 */
 		if (major) {
 			tsk->maj_flt++;
+#if defined(OPLUS_FEATURE_IOMONITOR) && defined(CONFIG_IOMONITOR)
+			iomonitor_update_fs_stats(FS_MAJOR_FAULT, 1);
+#endif /*OPLUS_FEATURE_IOMONITOR*/
 			perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS_MAJ, 1, regs,
 				      addr);
 		} else {
