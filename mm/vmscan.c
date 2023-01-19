@@ -62,6 +62,13 @@
 #define CREATE_TRACE_POINTS
 #include <trace/events/vmscan.h>
 
+#if defined(CONFIG_FG_TASK_UID)
+#include <linux/healthinfo/fg.h>
+#endif /*OPLUS_FEATURE_ZRAM_OPT*/
+#if defined(CONFIG_OPLUS_MULTI_KSWAPD)
+#include <linux/multi_kswapd.h>
+#endif
+
 struct scan_control {
 	/* How many pages shrink_list() should reclaim */
 	unsigned long nr_to_reclaim;
