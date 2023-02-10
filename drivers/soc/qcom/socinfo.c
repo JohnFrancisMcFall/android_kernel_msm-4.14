@@ -985,7 +985,62 @@ msm_get_ndefective_parts_array_offset(struct device *dev,
 			char *buf)
 {
 	return snprintf(buf, PAGE_SIZE, "0x%x\n",
-		socinfo_get_ndefective_parts_array_offset());
+		socinfo_get_nsubset_parts_array_offset());
+}
+
+static uint32_t
+socinfo_get_subset_parts(void)
+{
+	uint32_t num_parts = socinfo_get_num_subset_parts();
+	uint32_t offset = socinfo_get_nsubset_parts_array_offset();
+	uint32_t sub_parts = 0;
+	void *info = socinfo;
+	uint32_t part_entry;
+	int i;
+
+	if (!num_parts || !offset)
+		return -EINVAL;
+
+	info += offset;
+	for (i = 0; i < num_parts; i++) {
+		part_entry = get_unaligned_le32(info);
+		if (part_entry)
+			sub_parts |= BIT(i);
+		info += sizeof(uint32_t);
+	}
+
+	return sub_parts;
+}
+
+bool
+socinfo_get_part_info(enum subset_part_type part)
+{
+	uint32_t partinfo;
+
+	if (part >= NUM_PARTS_MAX) {
+		pr_err("Bad part number\n");
+		return false;
+	}
+
+	partinfo = socinfo_get_subset_parts();
+	if (partinfo < 0) {
+		pr_err("Failed to get part information\n");
+		return false;
+	}
+
+	return (partinfo & BIT(part));
+}
+EXPORT_SYMBOL(socinfo_get_part_info);
+
+static ssize_t
+msm_get_subset_parts(struct device *dev,
+		struct device_attribute *attr,
+		char *buf)
+{
+	uint32_t sub_parts = socinfo_get_subset_parts();
+
+	return scnprintf(buf, PAGE_SIZE, "%x\n", sub_parts);
+>>>>>>> 385baff8645f... fix typo socinfo.c
 }
 
 static ssize_t
@@ -1292,9 +1347,13 @@ static struct device_attribute msm_soc_attr_ncluster_array_offset =
 	__ATTR(ncluster_array_offset, 0444,
 			msm_get_ncluster_array_offset, NULL);
 
-static struct device_attribute msm_soc_attr_num_defective_parts =
-	__ATTR(num_defective_parts, 0444,
-			msm_get_num_defective_parts, NULL);
+static struct device_attribute msm_soc_attr_subset_cores =
+	__ATTR(subset_cores, 0444,
+			msm_get_subset_parts, NULL);
+
+static struct device_attribute msm_soc_attr_num_subset_parts =
+	__ATTR(num_subset_parts, 0444,
+			msm_get_num_subset_parts, NULL);
 
 static struct device_attribute msm_soc_attr_ndefective_parts_array_offset =
 	__ATTR(ndefective_parts_array_offset, 0444,
