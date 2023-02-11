@@ -1290,8 +1290,6 @@ static int cluster_init(const struct cpumask *mask)
 	if (!dev)
 		return -ENODEV;
 
-	pr_info("Creating CPU group %d\n", first_cpu);
-
 	if (num_clusters == MAX_CLUSTERS) {
 		pr_err("Unsupported number of clusters. Only %u supported\n",
 								MAX_CLUSTERS);
