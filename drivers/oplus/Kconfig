@@ -1,5 +1,11 @@
 # SPDX-License-Identifier: GPL-2.0-only
 # Copyright (C) 2018-2020 Oplus. All rights reserved.
+config OPLUS_SYSTEM_KERNEL
+  bool "config oplus system feature "
+  default y
+  help
+	define this config to add oplus sytstem kernel feature
+
 config OPLUS_FEATURE_DUMP_DEVICE_INFO
   bool "config dump device info"
   default n
@@ -11,72 +17,33 @@ config OPLUS_FEATURE_OPROJECT
   default n
   help
     define this config to define oplus project
-
-config OPLUS_FEATURE_CPU_JANKINFO
-	tristate "config cpu_jankinfo"
-	default n
-	help
-	  define this config to enable cpu jankinfo.
-
-config OPLUS_FEATURE_CHG_BASIC
-	tristate "config oplus_gauge"
-	default n
-	help
-	  Say Y here to enable the Oplus Fuel Gauge driver.
-
-#source "drivers/oplus/charger/Kconfig"
-#source "drivers/oplus/device_info/Kconfig"
 source "drivers/oplus/game_opt/Kconfig"
-source "drivers/oplus/network/Kconfig"
 source "drivers/oplus/wakelock_profiler/Kconfig"
-source "drivers/oplus/system/acm/Kconfig"
-source "drivers/oplus/system/misc/Kconfig"
-source "drivers/oplus/system/oplus_pmic_monitor/Kconfig"
 source "drivers/oplus/system/dump_device_info/Kconfig"
+source "drivers/oplus/system/acm/Kconfig"
 source "drivers/oplus/system/project_info/Kconfig"
-source "drivers/oplus/system/selinux/Kconfig"
-source "drivers/oplus/system/shutdown_detect/Kconfig"
-source "drivers/oplus/system/qcom_minidump/Kconfig"
-source "drivers/oplus/system/qcom_pmicwd/Kconfig"
-#source "drivers/oplus/oplus_performance/foreground_io_opt/Kconfig"
-source "drivers/oplus/oplus_performance/healthinfo/fs/Kconfig"
-source "drivers/oplus/oplus_performance/healthinfo/main/Kconfig"
-source "drivers/oplus/oplus_performance/healthinfo/mm/Kconfig"
-source "drivers/oplus/oplus_performance/inputboost_v4/Kconfig"
-source "drivers/oplus/oplus_performance/im/Kconfig"
-source "drivers/oplus/oplus_performance/oplus_mm/process_reclaim/Kconfig"
-source "drivers/oplus/oplus_performance/oplus_mm/zram_opt/Kconfig"
-source "drivers/oplus/oplus_performance/uifirst/Kconfig"
-#source "drivers/oplus/oplus_performance/special_opt/Kconfig"
-source "drivers/oplus/oplus_performance/tpp/Kconfig"
-source "drivers/oplus/oplus_performance/multi_kswapd/Kconfig"
-source "drivers/oplus/power/cpufreq_effiency/Kconfig"
-source "drivers/oplus/power/midas/Kconfig"
-#source "drivers/oplus/system/oplus_midas/Kconfig"
-#source "drivers/oplus/oplus_performance/sched_assist/Kconfig"
-#source "drivers/oplus/oplus_performance/uxio_first/Kconfig"
 
-config OPLUS_FEATURE_FDLEAK_CHECK
-    tristate "fdleak check"
-    default n
-    depends on OPLUS_SYSTEM_KERNEL
-    help
-      general utility to detect fdleak for userspace key process.
+#ifdef CONFIG_OPLUS_FEATURE_FDLEAK_CHECK
+source "drivers/oplus/system/oplus_fdleak/Kconfig"
+#endif /*CONFIG_OPLUS_FEATURE_FDLEAK_CHECK*/
 
-config COLOR_CTRL_V2
-	bool "oplus color ctrl device"
-	default n
-	help
-	  Say Y here if you have a color ctrl connected
-	  to your system.
-
-	  If unsure, say N.
+#ifdef OPLUS_FEATURE_MDMFEATURE
+source "drivers/oplus/system/mdmfeature/Kconfig"
+#endif /*OPLUS_FEATURE_MDMFEATURE*/
 
 #ifdef OPLUS_FEATURE_MIDAS
 source "drivers/oplus/system/oplus_midas/Kconfig"
 #endif
 
+#ifdef OPLUS_FEATURE_POWERINFO_STANDBY
+source "drivers/oplus/wakelock_profiler/Kconfig"
+#endif /* OPLUS_FEATURE_POWERINFO_STANDBY */
+
 source "drivers/oplus/system/shutdown_detect/Kconfig"
+#ifdef OPLUS_FEATURE_HEALTHINFO
+source "drivers/oplus/oplus_performance/healthinfo/main/Kconfig"
+#endif /* OPLUS_FEATURE_HEALTHINFO */
+
 source "drivers/oplus/oplus_performance/tpp/Kconfig"
 
 config OPLUS_ION_BOOSTPOOL
@@ -150,4 +117,26 @@ source "drivers/oplus/oplus_performance/im/Kconfig"
 #Add for theia saupwrkey
 source "drivers/oplus/system/oplus_saupwk/Kconfig"
 #endif /* OPLUS_FEATURE_SAUPWK */
+
+#ifdef OPLUS_FEATURE_TP_BASIC
+config OPLUS_COMMON_SOFT
+  bool "config oplus common software"
+  help
+        define this config to get project verion from sharemem.
+        Maybe this value is from CDT or dynamic identify by hardware
+        id.
+
+source "drivers/oplus/device_info/Kconfig"
+#endif /* OPLUS_FEATURE_TP_BASIC */
+
+
+#ifdef OPLUS_FEATURE_LOWMEM_DBG
+#Add for dump memory usage when lowmmem occurs.
+source "drivers/oplus/oplus_performance/lowmem_dbg/Kconfig"
+##endif /* OPLUS_FEATURE_LOWMEM_DBG */
+
+#ifdef OPLUS_FEATURE_MEMLEAK_DETECT
+#Add for svelte
+source "drivers/oplus/oplus_performance/memleak_detect/svelte/Kconfig"
+#endif /* OPLUS_FEATURE_MEMLEAK_DETECT */
 

@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 # Copyright (C) 2018-2020 Oplus. All rights reserved.
 
-obj-$(CONFIG_OPLUS_FEATURE_APP_MONITOR) += oplus_apps_monitor/
-
 #ifdef OPLUS_FEATURE_DNS_HOOK
 obj-$(CONFIG_OPLUS_FEATURE_DNS_HOOK) += oplus_dns_hook/
 #endif /* OPLUS_FEATURE_DNS_HOOK */

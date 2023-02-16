@@ -14,7 +14,7 @@
 #include <asm/uaccess.h>
 #include <linux/uaccess.h>
 #include <../fs/proc/internal.h>
-#include <linux/healthinfo/fg_uid.h>
+#include "fg_uid.h"
 
 #define FG_RW (S_IWUSR|S_IRUSR|S_IWGRP|S_IRGRP|S_IWOTH|S_IROTH)
 

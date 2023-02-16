@@ -495,7 +495,7 @@ static void active_max_reset(void)
 			active_time = ktime_sub(now, ws->last_time);
 			total_time = ktime_add(ws->total_time, active_time);
 		}
-		ws->total_time_backup = total_time;
+		
 		spin_unlock_irqrestore(&ws->lock, flags);
 	}
 	wakeup_srcu_read_unlock(srcuidx);
@@ -525,7 +525,7 @@ static ssize_t active_max_show(struct kobject *kobj, struct kobj_attribute *attr
 			active_time = ktime_sub(now, ws->last_time);
 			cur_ws_total_time = ktime_add(ws->total_time, active_time);
 		}
-		cur_ws_total_time_backup = ws->total_time_backup;
+		
 		spin_unlock_irqrestore(&ws->lock, flags);
 		if(ktime_compare(cur_ws_total_time, cur_ws_total_time_backup) >= 0) {
 			for(i = 0; i < STATICS_NUMBER; i++) {

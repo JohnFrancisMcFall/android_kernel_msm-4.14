@@ -10,7 +10,6 @@
 #include <linux/sched/task.h>
 #include <linux/sched/signal.h>
 #include <linux/uaccess.h>
-#include "../../../../kernel/sched/sched.h"
 
 #define GAME_CTRL_MAGIC 'x'
 

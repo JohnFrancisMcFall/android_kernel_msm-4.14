@@ -80,22 +80,9 @@ static void fdleak_check(struct task_struct *p, int fd)
         }
 
 	/* already fdleak, return, not check */
-	if (ots->fdleak_flag == FDLEAK_ALREADY_DUMP_FLAG || p->pid != p->tgid) {
 		return;
-        } else if (ots->fdleak_flag == FDLEAK_ALREADY_TRIGGER_FLAG && !white_list_check(p) && fd >= dump_threshold) {
 		send_sig(BIONIC_SIGNAL_FDTRACK, p, 0);
-		ots->fdleak_flag = FDLEAK_ALREADY_DUMP_FLAG;
-	} else if (ots->fdleak_flag != FDLEAK_ALREADY_TRIGGER_FLAG && !white_list_check(p) && fd >= load_threshold) {
-		if (atomic_cmpxchg(&error_is_handling, 0, 1) != 0)
-			return;
-
-		ots->fdleak_flag = FDLEAK_ALREADY_TRIGGER_FLAG;
-		handle_fdleak_error(p);
-	} else {
-		return;
-        }
-}
-
+		
 static int ret_handler(struct kretprobe_instance *kri, struct pt_regs *regs)
 {
 	int fd;

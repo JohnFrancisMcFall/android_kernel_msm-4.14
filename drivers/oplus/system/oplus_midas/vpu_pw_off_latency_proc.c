@@ -25,24 +25,10 @@
 #include <linux/timex.h>
 #include <linux/rtc.h>
 
-<<<<<<< HEAD
-#ifdef OPLUS_FEATURE_MIDAS
-
-#ifdef CONFIG_OPLUS_SYSTEM_KERNEL_QCOM
-int set_all_vpu_power_off_latency(uint64_t pw_off_latency)
-{
-	return -1;
-}
-#else
-// import from MTK vpu driver
-extern int set_all_vpu_power_off_latency(uint64_t pw_off_latency);
-#endif
-=======
 #ifdef CONFIG_OPLUS_FEATURE_SET_ALL_VPU_LATENCY
 
 // import from MTK vpu driver
 extern int set_all_vpu_power_off_latency(uint64_t pw_off_latency);
->>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2
 
 #define BUF_LEN		1024
 
@@ -89,52 +75,21 @@ static const struct file_operations vpu_pw_off_latency_proc_fops = {
 
 int __init vpu_pw_off_latency_proc_init(void)
 {
-<<<<<<< HEAD
-#ifdef CONFIG_OPLUS_SYSTEM_KERNEL_QCOM
-#else
 	g_vpu_pw_off_latency_pentry = proc_create("all_vpu_pw_off_latency",
 				0666, NULL, &vpu_pw_off_latency_proc_fops);
-#endif
-=======
-	g_vpu_pw_off_latency_pentry = proc_create("all_vpu_pw_off_latency",
-				0666, NULL, &vpu_pw_off_latency_proc_fops);
->>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2
 	return 0;
 }
 
 
 void __exit vpu_pw_off_latency_proc_exit(void)
 {
-<<<<<<< HEAD
-#ifdef CONFIG_OPLUS_SYSTEM_KERNEL_QCOM
-#else
-=======
->>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2
 	if (NULL != g_vpu_pw_off_latency_pentry) {
 		proc_remove(g_vpu_pw_off_latency_pentry);
 		g_vpu_pw_off_latency_pentry = NULL;
 	}
-<<<<<<< HEAD
-#endif
-}
-
-#else // #ifdef OPLUS_FEATURE_MIDAS
-
-int __init vpu_pw_off_latency_proc_init(void)
-{
-	return 0;
-}
-
-void __exit vpu_pw_off_latency_proc_exit(void)
-{
-}
-
-#endif // #ifdef OPLUS_FEATURE_MIDAS
-=======
 }
 
 module_init(vpu_pw_off_latency_proc_init);
 module_exit(vpu_pw_off_latency_proc_exit);
 
 #endif // #ifdef CONFIG_OPLUS_FEATURE_SET_ALL_VPU_LATENCY
->>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2

@@ -116,3 +116,4 @@ obj-$(CONFIG_PROCESS_RECLAIM)	+= process_reclaim.o
 obj-$(CONFIG_DUMP_TASKS_MEM) += task_mem/
 #endif /*defined(OPLUS_FEATURE_MEMLEAK_DETECT)
 
+subdir-ccflags-y := $(call cc-disable-warning, implicit-function-declaration)

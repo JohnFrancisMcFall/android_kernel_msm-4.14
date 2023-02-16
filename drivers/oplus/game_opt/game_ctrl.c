@@ -8,6 +8,7 @@
 #include <linux/fs.h>
 #include <linux/proc_fs.h>
 #include "../../kernel/sched/sched.h"
+
 #include "game_ctrl.h"
 
 struct proc_dir_entry *game_opt_dir = NULL;

@@ -10,9 +10,3 @@ config NANDSWAP_DEBUG
 	default n
 	help
 	 nandswap debug
-
-config DYNAMIC_TUNNING_SWAPPINESS
-	bool "dynamic tune swap feature"
-	default n
-	help
-	 dynamic tune swap feature

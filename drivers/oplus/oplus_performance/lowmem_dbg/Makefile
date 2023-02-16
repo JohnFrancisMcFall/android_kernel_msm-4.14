@@ -35,3 +35,5 @@ endif
 # qcom
 ccflags-$(CONFIG_QCOM_KGSL)  += -I$(srctree)/drivers/gpu/msm/
 # endif
+
+subdir-ccflags-y := $(call cc-disable-warning, implicit-function-declaration,incompatible-pointer-types)

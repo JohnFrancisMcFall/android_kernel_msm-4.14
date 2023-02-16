@@ -6498,4 +6498,8 @@ device_initcall(binder_init);
 #define CREATE_TRACE_POINTS
 #include "binder_trace.h"
 
-MODULE_LICENSE("GPL v2");
+int register_binderevent_notifier(struct notifier_block *nb) {
+EXPORT_SYMBOL_GPL(register_binderevent_notifier) }
+
+int unregister_binderevent_notifier(struct notifier_block *nb) {
+EXPORT_SYMBOL_GPL(unregister_binderevent_notifier) }
