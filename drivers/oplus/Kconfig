@@ -151,20 +151,3 @@ source "drivers/oplus/oplus_performance/im/Kconfig"
 source "drivers/oplus/system/oplus_saupwk/Kconfig"
 #endif /* OPLUS_FEATURE_SAUPWK */
 
-#ifdef OPLUS_FEATURE_TP_BASIC
-config OPLUS_COMMON_SOFT
-  bool "config oplus common software"
-  help
-        define this config to get project verion from sharemem.
-        Maybe this value is from CDT or dynamic identify by hardware
-        id.
-
-source "drivers/oplus/device_info/Kconfig"
-#endif /* OPLUS_FEATURE_TP_BASIC */
-
-
-#ifdef OPLUS_FEATURE_LOWMEM_DBG
-#Add for dump memory usage when lowmmem occurs.
-source "drivers/oplus/oplus_performance/lowmem_dbg/Kconfig"
-##endif /* OPLUS_FEATURE_LOWMEM_DBG */
-

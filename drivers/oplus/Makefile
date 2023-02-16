@@ -60,11 +60,3 @@ obj-$(CONFIG_NANDSWAP)		+= oplus_performance/oplus_nandswap/
 obj-$(CONFIG_OPLUS_FEATURE_SAUPWK)     += system/oplus_saupwk/
 #endif /* OPLUS_FEATURE_SAUPWK */
 
-obj-$(CONFIG_OPLUS_COMMON_SOFT)  +=  device_info/
-
-#ifdef OPLUS_FEATURE_LOWMEM_DBG
-#Add for dump mem when shrink
-obj-$(CONFIG_OPLUS_FEATURE_LOWMEM_DBG)	+=  oplus_performance/lowmem_dbg/
-#endif /* OPLUS_FEATURE_LOWMEM_DBG */
-
-
