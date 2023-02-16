@@ -490,7 +490,7 @@ static ssize_t cpu_load_read(struct file *filp, char __user *buff, size_t count,
 #ifdef CONFIG_OPLUS_JANK
         int load = ohm_get_cpuload();
 #else
-        int load = ohm_get_cur_cpuload(ohm_cpu_ctrl);
+       int load = (ohm_cpu_ctrl);
 #endif
         if(load < 0)
                 load = 0;
