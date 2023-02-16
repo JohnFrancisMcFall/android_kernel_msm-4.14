@@ -25,7 +25,7 @@ config OPLUS_FEATURE_CHG_BASIC
 	  Say Y here to enable the Oplus Fuel Gauge driver.
 
 #source "drivers/oplus/charger/Kconfig"
-source "drivers/oplus/device_info/Kconfig"
+#source "drivers/oplus/device_info/Kconfig"
 source "drivers/oplus/game_opt/Kconfig"
 source "drivers/oplus/network/Kconfig"
 source "drivers/oplus/wakelock_profiler/Kconfig"

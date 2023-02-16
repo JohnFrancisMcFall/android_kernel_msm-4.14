@@ -643,20 +643,6 @@ config OEM_QMI
 #endif /* OPLUS_FEATURE_SIM_DETECT */
 
 
-source "drivers/misc/c2port/Kconfig"
-source "drivers/misc/eeprom/Kconfig"
-source "drivers/misc/cb710/Kconfig"
-source "drivers/misc/ti-st/Kconfig"
-source "drivers/misc/lis3lv02d/Kconfig"
-source "drivers/misc/altera-stapl/Kconfig"
-source "drivers/misc/mei/Kconfig"
-source "drivers/misc/vmw_vmci/Kconfig"
-source "drivers/misc/mic/Kconfig"
-source "drivers/misc/genwqe/Kconfig"
-source "drivers/misc/echo/Kconfig"
-source "drivers/misc/cxl/Kconfig"
-source "drivers/misc/ocxl/Kconfig"
-source "drivers/misc/cardreader/Kconfig"
 source "drivers/misc/tri_state_key/Kconfig"
 source "drivers/misc/fpr_FingerprintCard/Kconfig"
 source "drivers/misc/aw8624_haptic/Kconfig"

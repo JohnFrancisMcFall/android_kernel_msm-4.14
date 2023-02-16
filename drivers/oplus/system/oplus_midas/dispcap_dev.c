@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  *  linux/drivers/soc/oplus/oplus_midas/dispcap_dev.c
  *
@@ -908,4 +907,4 @@ module_init(dispcap_dev_init);
 module_exit(dispcap_dev_exit);
 
 #endif // #if defined(CONFIG_OPLUS_FEATURE_DISPCAP)
->>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2
+

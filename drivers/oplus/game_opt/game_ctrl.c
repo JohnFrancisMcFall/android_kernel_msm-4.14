@@ -7,11 +7,7 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <linux/proc_fs.h>
-<<<<<<< HEAD
 #include "../../kernel/sched/sched.h"
-=======
->>>>>>> af48987acc1c... import OPLUS_FEATURE_GAME_OPT
-
 #include "game_ctrl.h"
 
 struct proc_dir_entry *game_opt_dir = NULL;

@@ -109,7 +109,7 @@ obj-$(CONFIG_PROCESS_RECLAIM)	+= process_reclaim.o
 
 
 #ifdef OPLUS_FEATURE_HEALTHINFO
-obj-y += healthinfo/
+#obj-y += healthinfo/
 #endif /* OPLUS_FEATURE_HEALTHINFO */
 
 #if defined(OPLUS_FEATURE_MEMLEAK_DETECT)

@@ -2,11 +2,6 @@
 # Copyright (C) 2018-2020 Oplus. All rights reserved.
 
 config OPLUS_FEATURE_MIDAS
-<<<<<<< HEAD
-bool "config oplus midas feature"
-help
-	This selects midas driver
-=======
 bool "config oplus midas device feature"
 help
 	This selects midas device driver
@@ -26,4 +21,3 @@ bool "config oplus midas dispcap feature"
 help
 	This selects midas dispcap device driver
 
->>>>>>> 2b872601d4c6... import OPLUS_FEATURE_MIDAS from Realme GT Neo 2
