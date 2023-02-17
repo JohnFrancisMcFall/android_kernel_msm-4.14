@@ -18,5 +18,3 @@ ext4-$(CONFIG_EXT4_FS_SECURITY)		+= xattr_security.o
 ext4-$(CONFIG_FS_VERITY)		+= verity.o
 #add for ext4 async discard suppot
 ext4-$(CONFIG_OPLUS_FEATURE_EXT4_ASYNC_DISCARD)   += discard.o
-
-subdir-ccflags-y := $(call cc-disable-warning, implicit-function-declaration)
