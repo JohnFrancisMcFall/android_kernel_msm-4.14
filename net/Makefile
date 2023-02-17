@@ -101,7 +101,7 @@ endif #/* OPLUS_FEATURE_WIFI_LUCKYMONEY */
 
 #ifdef OPLUS_FEATURE_APP_MONITOR
 #Add for apps network monitors
-obj-y				+= oplus_apps_monitor/
+#obj-y				+= oplus_apps_monitor/
 #endif /* OPLUS_FEATURE_APP_MONITOR */
 
 #ifdef OPLUS_FEATURE_DATA_EVAL
@@ -113,5 +113,5 @@ ifneq ($(OPLUS_FEATURE_DHCP),)
 # obj-y				+= oplus_dhcp/
 endif #/* OPLUS_FEATURE_DHCP */
 
-obj-y                           += oplus_modules/
+#obj-y                           += oplus_modules/
 
