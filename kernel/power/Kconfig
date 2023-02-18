@@ -340,6 +340,7 @@ config PM_GENERIC_DOMAINS_OF
 
 config CPU_PM
 	bool
+
 config ENERGY_MODEL
 	bool "Energy Model for CPUs"
 	depends on SMP
@@ -355,7 +356,3 @@ config ENERGY_MODEL
 
 	  If in doubt, say N.
 
-config BOEFFLA_WL_BLOCKER
-    bool "Boeffla generic wakelock blocker driver"
-    depends on PM
-    default y
