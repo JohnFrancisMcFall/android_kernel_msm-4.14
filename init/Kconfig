@@ -134,7 +134,7 @@ config HAVE_KERNEL_LZ4
 	bool
 
 config HAVE_KERNEL_ZSTD
-	bool
+        bool
 
 choice
 	prompt "Kernel compression mode"
@@ -226,7 +226,7 @@ config KERNEL_ZSTD
 	  with fast decompression speed. It will compress better than GZIP and
 	  decompress around the same speed as LZO, but slower than LZ4. You
 	  will need at least 192 KB RAM or more for booting. The zstd command
-	  line tools is required for compression.
+	  line tool is required for compression.
 
 endchoice
 

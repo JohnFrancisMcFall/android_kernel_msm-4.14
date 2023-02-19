@@ -16,11 +16,7 @@
  * uncompressible. Thus, we must look for worst-case expansion when the
  * compressor is encoding uncompressible data.
  *
-<<<<<<< HEAD
  * The structure of the .zst file in case of a compressed kernel is as follows.
-=======
- * The structure of the .zst file in case of a compresed kernel is as follows.
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
  * Maximum sizes (as bytes) of the fields are in parenthesis.
  *
  *    Frame Header: (18)
@@ -60,7 +56,6 @@
 /*
  * Preboot environments #include "path/to/decompress_unzstd.c".
  * All of the source files we depend on must be #included.
-<<<<<<< HEAD
  * zstd's only source dependency is xxhash, which has no source
  * dependencies.
  *
@@ -74,23 +69,6 @@
 # define UNZSTD_PREBOOT
 # include "xxhash.c"
 # include "zstd/decompress_sources.h"
-=======
- * zstd's only source dependeny is xxhash, which has no source
- * dependencies.
- *
- * zstd and xxhash avoid declaring themselves as modules
- * when ZSTD_PREBOOT and XXH_PREBOOT are defined.
- */
-#ifdef STATIC
-# define ZSTD_PREBOOT
-# define XXH_PREBOOT
-# include "xxhash.c"
-# include "zstd/entropy_common.c"
-# include "zstd/fse_decompress.c"
-# include "zstd/huf_decompress.c"
-# include "zstd/zstd_common.c"
-# include "zstd/decompress.c"
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 #endif
 
 #include <linux/decompress/mm.h>
@@ -99,7 +77,6 @@
 
 /* 128MB is the maximum window size supported by zstd. */
 #define ZSTD_WINDOWSIZE_MAX	(1 << ZSTD_WINDOWLOG_MAX)
-<<<<<<< HEAD
 /*
  * Size of the input and output buffers in multi-call mode.
  * Pick a larger size because it isn't used during kernel decompression,
@@ -120,22 +97,6 @@ static int INIT handle_zstd_error(size_t ret, void (*error)(char *x))
 	 * zstd_get_error_name() cannot be used because error takes a char *
 	 * not a const char *
 	 */
-=======
-/* Size of the input and output buffers in multi-call mode.
- * Pick a larger size because it isn't used during kernel decompression,
- * since that is single pass, and we have to allocate a large buffer for
- * zstd's window anyways. The larger size speeds up initramfs decompression.
- */
-#define ZSTD_IOBUF_SIZE		(1 << 17)
-
-static int INIT handle_zstd_error(size_t ret, void (*error)(char *x))
-{
-	const int err = ZSTD_getErrorCode(ret);
-
-	if (!ZSTD_isError(ret))
-		return 0;
-
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	switch (err) {
 	case ZSTD_error_memory_allocation:
 		error("ZSTD decompressor ran out of memory");
@@ -164,48 +125,28 @@ static int INIT decompress_single(const u8 *in_buf, long in_len, u8 *out_buf,
 				  long out_len, long *in_pos,
 				  void (*error)(char *x))
 {
-<<<<<<< HEAD
 	const size_t wksp_size = zstd_dctx_workspace_bound();
 	void *wksp = large_malloc(wksp_size);
 	zstd_dctx *dctx = zstd_init_dctx(wksp, wksp_size);
-=======
-	const size_t wksp_size = ZSTD_DCtxWorkspaceBound();
-	void *wksp = large_malloc(wksp_size);
-	ZSTD_DCtx *dctx = ZSTD_initDCtx(wksp, wksp_size);
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	int err;
 	size_t ret;
 
 	if (dctx == NULL) {
-<<<<<<< HEAD
 		error("Out of memory while allocating zstd_dctx");
-=======
-		error("Out of memory while allocating ZSTD_DCtx");
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 		err = -1;
 		goto out;
 	}
 	/*
 	 * Find out how large the frame actually is, there may be junk at
-<<<<<<< HEAD
 	 * the end of the frame that zstd_decompress_dctx() can't handle.
 	 */
 	ret = zstd_find_frame_compressed_size(in_buf, in_len);
-=======
-	 * the end of the frame that ZSTD_decompressDCtx() can't handle.
-	 */
-	ret = ZSTD_findFrameCompressedSize(in_buf, in_len);
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	err = handle_zstd_error(ret, error);
 	if (err)
 		goto out;
 	in_len = (long)ret;
 
-<<<<<<< HEAD
 	ret = zstd_decompress_dctx(dctx, out_buf, out_len, in_buf, in_len);
-=======
-	ret = ZSTD_decompressDCtx(dctx, out_buf, out_len, in_buf, in_len);
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	err = handle_zstd_error(ret, error);
 	if (err)
 		goto out;
@@ -227,20 +168,13 @@ static int INIT __unzstd(unsigned char *in_buf, long in_len,
 			 long *in_pos,
 			 void (*error)(char *x))
 {
-<<<<<<< HEAD
 	zstd_in_buffer in;
 	zstd_out_buffer out;
 	zstd_frame_header header;
-=======
-	ZSTD_inBuffer in;
-	ZSTD_outBuffer out;
-	ZSTD_frameParams params;
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	void *in_allocated = NULL;
 	void *out_allocated = NULL;
 	void *wksp = NULL;
 	size_t wksp_size;
-<<<<<<< HEAD
 	zstd_dstream *dstream;
 	int err;
 	size_t ret;
@@ -252,14 +186,6 @@ static int INIT __unzstd(unsigned char *in_buf, long in_len,
 	 */
 	if (out_len == 0)
 		out_len = UINTPTR_MAX - (uintptr_t)out_buf;
-=======
-	ZSTD_DStream *dstream;
-	int err;
-	size_t ret;
-
-	if (out_len == 0)
-		out_len = LONG_MAX; /* no limit */
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 
 	if (fill == NULL && flush == NULL)
 		/*
@@ -313,21 +239,13 @@ static int INIT __unzstd(unsigned char *in_buf, long in_len,
 	out.size = out_len;
 
 	/*
-<<<<<<< HEAD
 	 * We need to know the window size to allocate the zstd_dstream.
-=======
-	 * We need to know the window size to allocate the ZSTD_DStream.
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	 * Since we are streaming, we need to allocate a buffer for the sliding
 	 * window. The window size varies from 1 KB to ZSTD_WINDOWSIZE_MAX
 	 * (8 MB), so it is important to use the actual value so as not to
 	 * waste memory when it is smaller.
 	 */
-<<<<<<< HEAD
 	ret = zstd_get_frame_header(&header, in.src, in.size);
-=======
-	ret = ZSTD_getFrameParams(&params, in.src, in.size);
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	err = handle_zstd_error(ret, error);
 	if (err)
 		goto out;
@@ -336,32 +254,19 @@ static int INIT __unzstd(unsigned char *in_buf, long in_len,
 		err = -1;
 		goto out;
 	}
-<<<<<<< HEAD
 	if (header.windowSize > ZSTD_WINDOWSIZE_MAX) {
-=======
-	if (params.windowSize > ZSTD_WINDOWSIZE_MAX) {
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 		error("ZSTD-compressed data has too large a window size");
 		err = -1;
 		goto out;
 	}
 
 	/*
-<<<<<<< HEAD
 	 * Allocate the zstd_dstream now that we know how much memory is
 	 * required.
 	 */
 	wksp_size = zstd_dstream_workspace_bound(header.windowSize);
 	wksp = large_malloc(wksp_size);
 	dstream = zstd_init_dstream(header.windowSize, wksp, wksp_size);
-=======
-	 * Allocate the ZSTD_DStream now that we know how much memory is
-	 * required.
-	 */
-	wksp_size = ZSTD_DStreamWorkspaceBound(params.windowSize);
-	wksp = large_malloc(wksp_size);
-	dstream = ZSTD_initDStream(params.windowSize, wksp, wksp_size);
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 	if (dstream == NULL) {
 		error("Out of memory while allocating ZSTD_DStream");
 		err = -1;
@@ -394,11 +299,7 @@ static int INIT __unzstd(unsigned char *in_buf, long in_len,
 			in.size = in_len;
 		}
 		/* Returns zero when the frame is complete. */
-<<<<<<< HEAD
 		ret = zstd_decompress_stream(dstream, &out, &in);
-=======
-		ret = ZSTD_decompressStream(dstream, &out, &in);
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 		err = handle_zstd_error(ret, error);
 		if (err)
 			goto out;
@@ -427,11 +328,7 @@ out:
 	return err;
 }
 
-<<<<<<< HEAD
 #ifndef UNZSTD_PREBOOT
-=======
-#ifndef ZSTD_PREBOOT
->>>>>>> 6d35d0a04f18... kernel: zstd compress/decompress libs update
 STATIC int INIT unzstd(unsigned char *buf, long len,
 		       long (*fill)(void*, unsigned long),
 		       long (*flush)(void*, unsigned long),
