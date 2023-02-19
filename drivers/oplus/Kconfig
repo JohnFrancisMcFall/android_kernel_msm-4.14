@@ -8,13 +8,13 @@ config OPLUS_SYSTEM_KERNEL
 
 config OPLUS_FEATURE_DUMP_DEVICE_INFO
   bool "config dump device info"
-  default n
+  default y
   help
 	define this config to  dump device info.
 
 config OPLUS_FEATURE_OPROJECT
   tristate "config oplus project info for kernel"
-  default n
+  default y
   help
     define this config to define oplus project
 source "drivers/oplus/game_opt/Kconfig"
@@ -22,6 +22,7 @@ source "drivers/oplus/wakelock_profiler/Kconfig"
 source "drivers/oplus/system/dump_device_info/Kconfig"
 source "drivers/oplus/system/acm/Kconfig"
 source "drivers/oplus/system/project_info/Kconfig"
+source "drivers/oplus/network/Kconfig"
 
 #ifdef CONFIG_OPLUS_FEATURE_FDLEAK_CHECK
 source "drivers/oplus/system/oplus_fdleak/Kconfig"
@@ -54,49 +55,49 @@ config OPLUS_ION_BOOSTPOOL
 
 config OPLUS_FEATURE_CMDLINE
   tristate "Oplus command line"
-  default n
+  default y
   help
         define this config to get command line.
 
 config OPLUS_FEATURE_ANDROIDBOOT
   tristate "Oplus android boot"
-  default n
+  default y
   help
     define this config to get android boot cmdline.
 
 config OPLUS_FEATURE_FTMMODE
   tristate "Oplus ftm mode"
-  default n
+  default y
   help
       define this config to get ftm mode cmdline.
 
 config OPLUS_FEATURE_CHARGERPRESENT
   tristate "Oplus charger present"
-  default n
+  default y
   help
       define this config to get charger present cmdline.
 
 config OPLUS_FEATURE_BUILDVARIANT
   tristate "Oplus buildvariant"
-  default n
+  default y
   help 
       define this config to get buildvariant cmdline.
 
 config OPLUS_FEATURE_SIMCARDNUM
   tristate "Oplus simcardnum"
-  default n
+  default y
   help
       define this config to get simcardnum cmdline.
 
 config OPLUS_FEATURE_CDT
   tristate "Oplus cdt"
-  default n
+  default y
   help
       define this config to get cdt_integrity cmdline.
 
 config OPLUS_FEATURE_SHUTDOWN_SPEED
 	tristate "Oplus shutdown speed"
-	default n
+	default y
 	help
 	  define this config to get shutdown_speed cmdline.
 

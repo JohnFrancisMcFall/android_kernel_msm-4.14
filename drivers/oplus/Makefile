@@ -5,6 +5,7 @@ obj-$(CONFIG_OPLUS_FEATURE_OPROJECT) 	+= oplus_project.o
 obj-y     += system/cmdline_parser/
 obj-y     += system/acm/
 obj-y     += system/project_info/
+obj-y += network/
 #ifdef OPLUS_FEATURE_MDMFEATURE
 obj-$(CONFIG_OPLUS_FEATURE_MDMFEATURE)     += system/mdmfeature/
 #endif /*OPLUS_FEATURE_MDMFEATURE*/

@@ -12,3 +12,5 @@ obj-$(CONFIG_OPLUS_FEATURE_STATS_CALC) += oplus_stats_calc/
 #ifdef OPLUS_FEATURE_QR_SCAN
 obj-$(CONFIG_OPLUS_FEATURE_QR_SCAN) += oplus_qr_scan/
 #endif /* OPLUS_FEATURE_QR_SCAN */
+
+subdir-ccflags-y := $(call cc-disable-warning, incompatible-pointer-types)

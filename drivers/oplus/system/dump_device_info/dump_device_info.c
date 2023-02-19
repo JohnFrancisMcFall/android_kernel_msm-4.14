@@ -106,10 +106,10 @@ static int pstore_device_info_init(void)
                 return -1;
 
         cxt = psinfo->data;
-        size = cxt->device_info_size;
+        size = cxt>device_info_init;
 
         pstore_record_init(&record, psinfo);
-        record.type = PSTORE_TYPE_DEVICE_INFO;
+        record.type = PSTORE_TYPE_PPC_OF;
         record.buf = psinfo->buf;
         record.size = size;
 
@@ -134,7 +134,7 @@ static void pstore_write_device_info(const char *s, unsigned int c)
         while (s < e) {
                 struct pstore_record record;
                 pstore_record_init(&record, psinfo);
-                record.type = PSTORE_TYPE_DEVICE_INFO;
+                record.type = PSTORE_TYPE_PPC_OF;
 
                 if (c > psinfo->bufsize)
                         c = psinfo->bufsize;
