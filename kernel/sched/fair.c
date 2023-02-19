@@ -13510,7 +13510,6 @@ void check_for_migration(struct rq *rq, struct task_struct *p)
 
 		raw_spin_lock(&migration_lock);
 		rcu_read_lock();
-		new_cpu = find_energy_efficient_cpu(sd, p, cpu, prev_cpu, 0, 1);
 		rcu_read_unlock();
 		if ((new_cpu != -1) && (new_cpu != prev_cpu) &&
 		    (capacity_orig_of(new_cpu) > capacity_orig_of(prev_cpu))) {
