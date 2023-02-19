@@ -4584,6 +4584,7 @@ static void bfq_finish_request(struct request *rq)
 
 		if (!RB_EMPTY_NODE(&rq->rb_node))
 			bfq_remove_request(rq->q, rq);
+		bfq_put_rq_priv_body(bfqq);
 	}
 
 	rq->elv.priv[0] = NULL;
