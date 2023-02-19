@@ -730,7 +730,7 @@ static ssize_t store_##file_name					\
 	int ret, temp;							\
 	struct cpufreq_policy new_policy;				\
 									\
-	if ( !unblock_frequency && (&policy->object == &policy->min) || (&policy->object == &policy->max))				\
+	if ( !unblock_frequency && (&policy->object == &policy->min)
 		return count;						\
 									\
 	memcpy(&new_policy, policy, sizeof(*policy));			\
