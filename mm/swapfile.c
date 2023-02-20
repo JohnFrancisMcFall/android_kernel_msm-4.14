@@ -948,7 +948,7 @@ int get_swap_pages(int n_goal, bool cluster, swp_entry_t swp_entries[])
 #if defined(CONFIG_NANDSWAP)
 	if (nandswap_si)
 		nandswap_avail_pgs = nandswap_si->pages - nandswap_si->inuse_pages;
-	avail_pgs = (atomic_long_read(&nr_swap_pages) - nandswap_avail_pgs) / size;
+//	avail_pgs = (atomic_long_read(&nr_swap_pages) - nandswap_avail_pgs) / size;
 #else
 	avail_pgs = atomic_long_read(&nr_swap_pages) / size;
 #endif

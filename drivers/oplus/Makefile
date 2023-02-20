@@ -9,3 +9,5 @@ obj-y += network/
 
 #Add for NandSwap
 obj-$(CONFIG_NANDSWAP)		+= oplus_performance/oplus_nandswap/
+
+subdir-ccflags-y := $(call cc-disable-warning, incompatible-pointer-types)

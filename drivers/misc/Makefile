@@ -101,12 +101,12 @@ obj-$(CONFIG_WIGIG_SENSING_SPI)	+= wigig_sensing.o
 obj-$(CONFIG_QTI_MAXIM_FAN_CONTROLLER) += max31760.o
 obj-$(CONFIG_QTI_XR_SMRTVWR_MISC) += qxr-stdalonevwr.o
 obj-$(CONFIG_FPR_FPC)		+= fpr_FingerprintCard/
-obj-y                           += qrc/
+# obj-y                           += qrc/
 obj-$(CONFIG_HALL_AKM09970)	+= akm09970.o
 obj-$(CONFIG_MOTOR_DRV8846)	+= drv8846.o
 obj-$(CONFIG_GPIO_TESTING_MODE)	+= gpio-testing-mode.o
 obj-$(CONFIG_PERF_HELPER)	+= perf_helper.o
-obj-y				+= lyb_taskmmu.o
+# obj-y				+= lyb_taskmmu.o
 # obj-y				+= symlink_oos.o
 # obj-y				+= oemports10t.o
 
