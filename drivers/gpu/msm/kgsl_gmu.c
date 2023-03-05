@@ -19,6 +19,7 @@
 #include <linux/msm-bus.h>
 #include <linux/msm-bus-board.h>
 #include <linux/pm_opp.h>
+#include <misc/d8g_helper.h>
 #include <soc/qcom/cmd-db.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
 
@@ -1480,15 +1481,20 @@ error:
 static int gmu_enable_clks(struct kgsl_device *device)
 {
 	struct gmu_device *gmu = KGSL_GMU_DEVICE(device);
-	int ret, j = 0;
+	int ret, j = 0, gmu_set;
 
 	if (IS_ERR_OR_NULL(gmu->clks[0]))
 		return -EINVAL;
 
-	ret = clk_set_rate(gmu->clks[0], gmu->gmu_freqs[DEFAULT_GMU_FREQ_IDX]);
+	if ((oprofile != 4 || oprofile != 0) && oplus_panel_status == 2)
+		gmu_set = GMU_FREQUENCY;
+	else
+		gmu_set = GMU_FREQUENCY_LOW;
+
+	ret = clk_set_rate(gmu->clks[0], gmu_set);
 	if (ret) {
 		dev_err(&gmu->pdev->dev, "fail to set default GMU clk freq %d\n",
-				gmu->gmu_freqs[DEFAULT_GMU_FREQ_IDX]);
+				gmu_set);
 		return ret;
 	}
 
