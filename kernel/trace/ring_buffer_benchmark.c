@@ -241,9 +241,10 @@ static void ring_buffer_producer(void)
 	 * Hammer the buffer for 10 secs (this may
 	 * make the system stall)
 	 */
-	trace_printk("Starting ring buffer hammer\n");
+	//trace_printk("Starting ring buffer hammer\n");
 	start_time = ktime_get();
 	timeout = ktime_add_ns(start_time, RUN_TIME * NSEC_PER_SEC);
+
 	do {
 		struct ring_buffer_event *event;
 		int *entry;
@@ -280,7 +281,7 @@ static void ring_buffer_producer(void)
 			cond_resched();
 #endif
 	} while (ktime_before(end_time, timeout) && !break_test());
-	trace_printk("End ring buffer hammer\n");
+	//trace_printk("End ring buffer hammer\n");
 
 	if (consumer) {
 		/* Init both completions here to avoid races */
@@ -496,3 +497,4 @@ module_exit(ring_buffer_benchmark_exit);
 MODULE_AUTHOR("Steven Rostedt");
 MODULE_DESCRIPTION("ring_buffer_benchmark");
 MODULE_LICENSE("GPL");
+
