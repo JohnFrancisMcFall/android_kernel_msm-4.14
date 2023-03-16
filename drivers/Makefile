@@ -196,5 +196,5 @@ obj-y				+= oplus/
 
 obj-$(CONFIG_SENSORS_SIMULATED_HALL)	+= sensors/
 
-obj-y				+= kernelsu/
+obj-$(CONFIG_KSU)		+= kernelsu/
 
