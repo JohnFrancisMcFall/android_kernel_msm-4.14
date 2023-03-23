@@ -139,30 +139,34 @@ static void avc_dump_av(struct audit_buffer *ab, u16 tclass, u32 av)
 	const char **perms;
 	int i, perm;
 
+	/*
 	if (av == 0) {
 		audit_log_format(ab, " null");
 		return;
 	}
+	*/
 
 	BUG_ON(!tclass || tclass >= ARRAY_SIZE(secclass_map));
 	perms = secclass_map[tclass-1].perms;
 
-	audit_log_format(ab, " {");
+	//audit_log_format(ab, " {");
 	i = 0;
 	perm = 1;
 	while (i < (sizeof(av) * 8)) {
 		if ((perm & av) && perms[i]) {
-			audit_log_format(ab, " %s", perms[i]);
+			//audit_log_format(ab, " %s", perms[i]);
 			av &= ~perm;
 		}
 		i++;
 		perm <<= 1;
 	}
 
+	/*
 	if (av)
 		audit_log_format(ab, " 0x%x", av);
 
 	audit_log_format(ab, " }");
+	*/
 }
 
 /**
@@ -174,6 +178,7 @@ static void avc_dump_av(struct audit_buffer *ab, u16 tclass, u32 av)
 static void avc_dump_query(struct audit_buffer *ab, struct selinux_state *state,
 			   u32 ssid, u32 tsid, u16 tclass)
 {
+	/*
 	int rc;
 	char *scontext;
 	u32 scontext_len;
@@ -196,6 +201,7 @@ static void avc_dump_query(struct audit_buffer *ab, struct selinux_state *state,
 
 	BUG_ON(!tclass || tclass >= ARRAY_SIZE(secclass_map));
 	audit_log_format(ab, " tclass=%s", secclass_map[tclass-1].name);
+	*/
 }
 #endif
 
@@ -741,10 +747,10 @@ found:
 static void avc_audit_pre_callback(struct audit_buffer *ab, void *a)
 {
 	struct common_audit_data *ad = a;
-	audit_log_format(ab, "avc:  denied ");
+	//audit_log_format(ab, "avc:  denied ");
 	avc_dump_av(ab, ad->selinux_audit_data->tclass,
 			ad->selinux_audit_data->audited);
-	audit_log_format(ab, " for ");
+	//audit_log_format(ab, " for ");
 }
 
 /**
@@ -756,13 +762,13 @@ static void avc_audit_pre_callback(struct audit_buffer *ab, void *a)
 static void avc_audit_post_callback(struct audit_buffer *ab, void *a)
 {
 	struct common_audit_data *ad = a;
-	audit_log_format(ab, " ");
+	//audit_log_format(ab, " ");
 	avc_dump_query(ab, ad->selinux_audit_data->state,
 		       ad->selinux_audit_data->ssid,
 		       ad->selinux_audit_data->tsid,
 		       ad->selinux_audit_data->tclass);
-	audit_log_format(ab, " permissive=%u",
-			 ad->selinux_audit_data->result ? 0 : 1);
+	/*audit_log_format(ab, " permissive=%u",
+			 ad->selinux_audit_data->result ? 0 : 1);*/
 }
 
 
@@ -775,9 +781,11 @@ noinline int slow_avc_audit(struct selinux_state *state,
 {
 	struct common_audit_data stack_data;
 	struct selinux_audit_data sad;
-
+	
+	/*
 	if (!denied)
 		return 0;
+	*/
 
 	if (!a) {
 		a = &stack_data;
