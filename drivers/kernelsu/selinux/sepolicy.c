@@ -7,7 +7,10 @@
 #include "../klog.h" // IWYU pragma: keep
 #include "ss/symtab.h"
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0) || LINUX_VERSION_CODE < KERNEL_VERSION(5, 4, 0)
+// 5.4 is not tested
 #define KSU_SUPPORT_ADD_TYPE
+#endif
 
 //////////////////////////////////////////////////////
 // Declaration
