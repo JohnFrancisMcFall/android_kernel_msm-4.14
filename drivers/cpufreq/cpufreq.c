@@ -30,7 +30,7 @@
 #include <linux/suspend.h>
 #include <linux/syscore_ops.h>
 #include <linux/tick.h>
-#include <linux/hid_magic.h>
+// #include <linux/hid_magic.h>
 #include <linux/sched/topology.h>
 #include <linux/sched/sysctl.h>
 
