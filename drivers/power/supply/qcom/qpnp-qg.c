@@ -5111,25 +5111,9 @@ static int qpnp_qg_probe(struct platform_device *pdev)
 	chip->esr_actual = -EINVAL;
 	chip->esr_nominal = -EINVAL;
 	chip->batt_age_level = -EINVAL;
-
 #ifdef CONFIG_BATT_VERIFY_BY_DS28E16
 	chip->max_verify_psy = power_supply_get_by_name("batt_verify");
 #endif
-	chip->qg_charge_counter = -EINVAL;
-
-	chip->qg_version = (enum qg_version)of_device_get_match_data(&pdev->dev);
-
-	switch (chip->qg_version) {
-	case QG_LITE:
-		chip->max_fifo_length = 5;
-		break;
-	default:
-		chip->max_fifo_length = 8;
-		break;
-	}
-
-	qg_create_debugfs(chip);
->>>>>>> b1b28cabaebe (qcom: qpnp-pq: Fix -Wpointer-to-int-cast)
 
 	rc = qg_alg_init(chip);
 	if (rc < 0) {
