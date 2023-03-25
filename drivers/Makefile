@@ -193,8 +193,10 @@ obj-$(CONFIG_ESOC)              += esoc/
 obj-$(CONFIG_GNSS_SIRF)		+= gnsssirf/
 obj-$(CONFIG_GNSS)		+= gnss/
 obj-y				+= oplus/
-
 obj-$(CONFIG_SENSORS_SIMULATED_HALL)	+= sensors/
+<<<<<<< HEAD
 
 obj-$(CONFIG_KSU)		+= kernelsu/
 
+=======
+>>>>>>> parent of 731e77dbe419 (Import KernelSU from https://github.com/tiann/KernelSU/tree/main/kernel)
